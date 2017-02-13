@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1473304255 source:/home/pedro/desenvolvimento/cg/processamentoimagens/PixelLab/src/Examples/test01.1.Opening.Image.cpp
+	"pixelLab.h"
+	<windows.h>
+	"GL/glut.h"
+	<stdlib.h>
+
+1372456063 /home/pedro/desenvolvimento/cg/processamentoimagens/PixelLab/src/PixelLab/pixelLab.h
+
+1260225348 /home/pedro/desenvolvimento/cg/processamentoimagens/PixelLab/include/GL/glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
