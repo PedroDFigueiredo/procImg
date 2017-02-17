@@ -5,6 +5,7 @@
 #include <list>
 #include "lzw.cpp"
 #include "rle.cpp"
+#include "huffman.cpp"
 
 using namespace std;
 
@@ -85,7 +86,7 @@ void displayImage(void) {
 }
 
 void Huffman(int op) {
-
+	huffman(img1);
 }
 
 void LZW(int i) {

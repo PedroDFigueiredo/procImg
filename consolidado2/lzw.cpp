@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -208,22 +209,28 @@ void lzw(PixelLab* image, vector<string> dicR, vector<string> dicG, vector<strin
 		sequenceB.push_back(pos);
 	}
 
-	double sizeSequence = sizeof(short int) * (sequenceR.size() + sequenceG.size() + sequenceB.size());
+	//double sizeSequence = sizeof(short int) * (sequenceR.size() + sequenceG.size() + sequenceB.size());
+	ofstream outfile ("lzw.dat", ofstream::binary);
 
 	for (int i = 0; i < dicR.size(); i++) {
-		sizeSequence += dicR[i].size();
+		outfile.write(dicR[i].c_str(), sizeof(dicR[i]));
+		//sizeSequence += dicR[i].size();
 	}
 
 	for (int i = 0; i < dicG.size(); i++) {
-		sizeSequence += dicG[i].size();
+		outfile.write(dicG[i].c_str(), sizeof(dicG[i]));
+		//sizeSequence += dicG[i].size();
 	}
 
 	for (int i = 0; i < dicB.size(); i++) {
-		sizeSequence += dicB[i].size();
+		outfile.write(dicB[i].c_str(), sizeof(dicB[i]));
+		//sizeSequence += dicB[i].size();
 	}
 
-	double originalSize = image->GetHeight() *image->GetWidth() * sizeof(uByte) * 3;
+	outfile.close();
 
-	cout << "Tamanho da imagem original: " << (originalSize / 1024.0) << " KB\n";
-	cout << "Tamanho da imagem compactada: " << (sizeSequence / 1024.0) << " KB\n";
+	//double originalSize = image->GetHeight() *image->GetWidth() * sizeof(uByte) * 3;
+
+	//cout << "Tamanho da imagem original: " << (originalSize / 1024.0) << " KB\n";
+	//cout << "Tamanho da imagem compactada: " << (sizeSequence / 1024.0) << " KB\n";
 }

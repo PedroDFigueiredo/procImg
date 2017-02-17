@@ -5,6 +5,7 @@
 #include <list>
 #include "lzw.cpp"
 #include "rle.cpp"
+#include "huffman.cpp"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ void RLE(int);
 
 void init (void) {
 	img1 = new PixelLab();
-	img1->Read("figs/lena.png");
+	img1->Read("figs/merge.example.png");
 }
 
 void computeUIWidth() {
@@ -83,7 +84,7 @@ void displayImage(void) {
 }
 
 void Huffman(int op) {
-
+	huffman(img1);
 }
 
 void LZW(int i) {

@@ -79,10 +79,10 @@ int matVertSob[3][3] = {
 
 void init (void) {
 	img1 = new PixelLab();
-	img1->Read("figs/lena.png");
+	img1->Read("figs/amazon.river.png");
 
   img2 = new PixelLab();
-	img2->Read("figs/lena.png");
+	img2->Read("figs/amazon.river.png");
 }
 
 void computeUIWidth() {

@@ -133,11 +133,12 @@ int main(int argc, char *argv[]){
 
 	glui->add_button((char *) "Quit", 0,(GLUI_Update_CB)exit );
 
-	glui->set_main_gfx_window( main_window );
+	//glui->set_main_gfx_window( main_window );
 	GLUI_Master.set_glutIdleFunc( idle );
 	computeUIWidth(); // Compute the size of the user interface
 	glutReshapeWindow(UI_width, 250);
 
+	glui->set_main_gfx_window(main_window);
 
 	glutMainLoop();
 

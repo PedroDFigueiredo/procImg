@@ -81,11 +81,11 @@ void lzw(PixelLab* image, vector<string> dicR, vector<string> dicG, vector<strin
 
 	string next;
 
-	for (int i = 0; i <= 255; i++) {
+	/*for (int i = 0; i <= 255; i++) {
 		dicR.push_back(to_string(i));
 		dicG.push_back(to_string(i));
 		dicB.push_back(to_string(i));
-	}
+	}*/
 
 	image->GetRGB(0, 0, r, g, b);
 	//r = image[0][0];

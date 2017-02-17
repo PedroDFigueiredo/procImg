@@ -6,6 +6,7 @@
 #include <sstream>
 #include <algorithm>
 #include <utility>
+#include <fstream>
 
 using namespace std;
 
@@ -92,14 +93,21 @@ void rle(PixelLab* image) {
 		}
 	}
 
-	double sizeSequence = 0;
+	//double sizeSequence = 0;
+
+	ofstream outfile ("rle.dat", ofstream::binary);
 
 	for (int i = 0; i < image->GetHeight(); i++) {
-		sizeSequence += (sizeof(short int) + sizeof(MyPixel)) * vPixels[i].size();
+		for (int j = 0; j < vPixels[i].size(); ++j) {
+			outfile.write(reinterpret_cast<const char *>(&(vPixels[i].back().first)), sizeof(vPixels[i].back().first));
+			outfile.write(reinterpret_cast<const char *>(&(vPixels[i].back().second.red)), sizeof(vPixels[i].back().second.red));
+			outfile.write(reinterpret_cast<const char *>(&(vPixels[i].back().second.green)), sizeof(vPixels[i].back().second.green));
+			outfile.write(reinterpret_cast<const char *>(&(vPixels[i].back().second.blue)), sizeof(vPixels[i].back().second.blue));
+		}
+		//sizeSequence += (sizeof(short int) + sizeof(MyPixel)) * vPixels[i].size();
 	}
 
-	double sizeOriginal = image->GetHeight() * image->GetWidth() * sizeof(MyPixel);
+	outfile.close();
 
-	cout << "Tamanho da imagem original: " << (sizeOriginal / 1024.0) << " KB\n";
-	cout << "Tamanho da imagem compactado: " << (sizeSequence / 1024.0) << " KB\n";
+	double sizeOriginal = image->GetHeight() * image->GetWidth() * sizeof(MyPixel);
 }
