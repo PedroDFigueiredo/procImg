@@ -53,9 +53,9 @@ static void display2(void)
       imgCopy->ViewImage();
          
    }else{
-     // imgCopy2->Copy(imgCopy);
-      dilatacao(imgOriginal, imgCopy2);
-      imgCopy2->ViewImage();
+      imgCopy->Copy(imgOriginal);
+      dilatacao(imgOriginal, imgCopy);
+      imgCopy->ViewImage();
        
    }
 
@@ -68,18 +68,7 @@ void erosao(PixelLab *imgOri, PixelLab *imgCp){
    int tempx, tempy, raio = elemEstrctSize/2;
    int matrix[elemEstrctSize][elemEstrctSize];
 
-int matrix2[8][8] =
-{
-{0,0,0,0,0,0,0,0},
-{0,0,0,1,1,1,0,0},
-{0,0,1,1,1,1,0,0},
-{0,1,1,1,1,0,0,0},
-{0,1,1,1,0,0,0,0},
-{0,1,1,1,0,0,0,0},
-{0,0,0,0,0,0,0,0},
-{0,0,0,0,0,0,0,0},
-};
-int matrix3[8][8];
+
  
    for(int x = 0; x < elemEstrctSize; x++)
       for(int y = 0; y < elemEstrctSize; y++){
@@ -87,12 +76,7 @@ int matrix3[8][8];
 
       }
 
-/*   for(int x = 0; x < elemEstrctSize; x++){
-      for(int y = 0; y < elemEstrctSize; y++){
-         cout<<matrix[x][y]<<" ";
-      }
-      cout<<"\n";
-   }*/
+
 
    bool fit = true;
    int aux = 0;
@@ -131,6 +115,8 @@ int matrix3[8][8];
 }
 
 void dilatacao(PixelLab *imgOri, PixelLab *imgCp){
+      cout<<"DILATAMENTO2\n";
+
    int tempx, tempy, raio = elemEstrctSize/2;
    int matrix[elemEstrctSize][elemEstrctSize];
 
@@ -139,17 +125,12 @@ void dilatacao(PixelLab *imgOri, PixelLab *imgCp){
          matrix[x][y] = pow((x-raio ),2) + pow((y-raio),2) > pow(raio,2) ? 0 : 1;
 
       }
-
- /*  for(int x = 0; x < elemEstrctSize; x++){
-      for(int y = 0; y < elemEstrctSize; y++){
-         cout<<matrix[x][y]<<" ";
-      }
-      cout<<"\n";
-   }*/
+   
 
    bool hit = false;
    int aux = 0;
-   
+
+
    for(int x = 0; x < imgOriginal->GetWidth(); x++)
    
       for(int y = 0; y < imgOriginal->GetHeight(); y++){
@@ -160,7 +141,7 @@ void dilatacao(PixelLab *imgOri, PixelLab *imgCp){
                tempy = y-raio+j;
 
                if(!(tempx < 0 || tempx >= imgOriginal->GetWidth()) && !(tempy < 0 || tempy >= imgOriginal->GetHeight())){
-                  aux = (int)imgOri->GetGrayValue(tempx, tempy) > 120 ? 255 : 0;
+                  aux = (int)imgOri->GetGrayValue(tempx, tempy) != 0 ? 255 : 0;
                  
                   if(matrix[i][j] != 0 && aux != 0){
                      hit = true;
@@ -170,10 +151,10 @@ void dilatacao(PixelLab *imgOri, PixelLab *imgCp){
            }
          if(hit){
 
-            imgCp->SetGrayValue(x, y, 1);
+            imgCp->SetGrayValue(x, y, 255);
          }
-         else
-            imgCp->SetGrayValue(x, y, (int)imgOri->GetGrayValue(x,y));
+         /*else
+            imgCp->SetGrayValue(x, y, 0);*/
 
          hit = false;
 
@@ -189,7 +170,7 @@ static void key(unsigned char key, int x, int y)
     switch (key)
     {
       case '+' :
-         elemEstrctSize += elemEstrctSize >= 9 ? 0 : 2;
+         elemEstrctSize += elemEstrctSize >= 13 ? 0 : 2;
          break;
       case '-' :
          elemEstrctSize -= elemEstrctSize <= 1 ? 0 : 2;
