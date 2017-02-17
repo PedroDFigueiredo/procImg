@@ -53,22 +53,27 @@ void control(int value){
 			break;	
 		}
 		case 3 :{
-			system("gnome-terminal -x sh -c 'make -f Makefile_morfologia'");
+			system("gnome-terminal -x sh -c 'make -f Makefile_spacial_filter2'");
 			break;
 		}
 		case 4 :{
-			system("gnome-terminal -x sh -c 'make -f Makefile_morfologiaII'");
+			system("gnome-terminal -x sh -c 'make -f Makefile_morfologia'");
 			break;	
 		}
 		case 5 :{
-			system("gnome-terminal -x sh -c 'make -f Makefile_segmentacaoI'");
+			system("gnome-terminal -x sh -c 'make -f Makefile_morfologiaII'");
 			break;	
 		}
 		case 6 :{
-			system("gnome-terminal -x sh -c 'make -f Makefile_segmentacaoII'");
+			system("gnome-terminal -x sh -c 'make -f Makefile_segmentacaoI'");
 			break;	
 		}
 		case 7 :{
+			system("gnome-terminal -x sh -c 'make -f Makefile_segmentacaoII'");
+			break;	
+		}
+
+		case 8 :{
 			system("gnome-terminal -x sh -c 'make -f Makefile_compress'");
 			break;	
 		}
@@ -110,12 +115,13 @@ int main(int argc, char *argv[]){
 	GLUI_Panel *io_panel = glui->add_panel( (char *) "Functions" );
 	glui->add_column_to_panel( io_panel, false);
 	GLUI_Button *b1 = glui->add_button_to_panel( io_panel, (char*) "Curvas de nível", 1, control);
-	GLUI_Button *b2 = glui->add_button_to_panel( io_panel, (char*) "Filtros", 2, control);
-	GLUI_Button *b3 = glui->add_button_to_panel( io_panel, (char*) "Morfologia 1", 3, control);
-	GLUI_Button *b4 = glui->add_button_to_panel( io_panel, (char*) "Morfologia 2", 4, control);
-	GLUI_Button *b5 = glui->add_button_to_panel( io_panel, (char*) "Segmentação 1", 5, control);
-	GLUI_Button *b6 = glui->add_button_to_panel( io_panel, (char*) "Segmentação 2", 6, control);
-	GLUI_Button *b7 = glui->add_button_to_panel( io_panel, (char*) "Compressão", 7, control);
+	GLUI_Button *b2 = glui->add_button_to_panel( io_panel, (char*) "Filtros Espaciais 1", 2, control);
+	GLUI_Button *b3 = glui->add_button_to_panel( io_panel, (char*) "Filtros Espaciais 2", 3, control);
+	GLUI_Button *b4 = glui->add_button_to_panel( io_panel, (char*) "Morfologia 1", 4, control);
+	GLUI_Button *b5 = glui->add_button_to_panel( io_panel, (char*) "Morfologia 2", 5, control);
+	GLUI_Button *b6 = glui->add_button_to_panel( io_panel, (char*) "Segmentação 1", 6, control);
+	GLUI_Button *b7 = glui->add_button_to_panel( io_panel, (char*) "Segmentação 2", 7, control);
+	GLUI_Button *b8 = glui->add_button_to_panel( io_panel, (char*) "Compressão", 8, control);
 	
 	b1->set_w(50);
 	b2->set_w(50);
@@ -130,7 +136,7 @@ int main(int argc, char *argv[]){
 	glui->set_main_gfx_window( main_window );
 	GLUI_Master.set_glutIdleFunc( idle );
 	computeUIWidth(); // Compute the size of the user interface
-	glutReshapeWindow(UI_width, 220);
+	glutReshapeWindow(UI_width, 250);
 
 
 	glutMainLoop();
