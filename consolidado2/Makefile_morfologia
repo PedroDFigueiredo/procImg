@@ -1,0 +1,6 @@
+all: 
+	g++ -Wall -Wextra -w -fexceptions -g -I  ../PixelLab/include -I ../PixelLab/src/PixelLab -I ../PixelLab/bin -c morfologia.cpp -o morfologia.o
+	g++  -w -o morfologia morfologia.o   -lGL -lGLU -lglut  -lglui ../PixelLab/lib/libpixelLab_linux.a ../PixelLab/lib/libpng12_linux64.a -lz
+	./morfologia $(imgParam)
+
+ 

@@ -1,0 +1,5 @@
+all: 
+	g++ -Wall -Wextra -w -fexceptions -g -I  ../PixelLab/include -I ../PixelLab/src/PixelLab -I ../PixelLab/bin -c segmentacaoII.cpp -o segmentacaoII.o
+	g++  -w -o segmentacaoII segmentacaoII.o   -lGL -lGLU -lglut  -lglui ../PixelLab/lib/libpixelLab_linux.a ../PixelLab/lib/libpng12_linux64.a -lz
+	./segmentacaoII $(imgParam)
+
