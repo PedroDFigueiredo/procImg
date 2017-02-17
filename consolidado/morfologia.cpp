@@ -250,7 +250,7 @@ void motion(int x, int y )
 void init()
 {
    imgOriginal = new PixelLab();
-   imgOriginal->Read("ex1.png");
+   imgOriginal->Read("figs/ex1.png");
 
    imgCopy = new PixelLab();
    imgCopy->Copy(imgOriginal);

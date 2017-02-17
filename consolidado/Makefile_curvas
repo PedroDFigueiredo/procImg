@@ -1,0 +1,5 @@
+all: 
+	g++ -Wall -Wextra -w -fexceptions -g -I  ../PixelLab/include -I ../PixelLab/src/PixelLab -I ../PixelLab/bin -c curvas_de_nivel.cpp -o curvas_de_nivel.o
+	g++  -w -o curvas_de_nivel curvas_de_nivel.o   -lGL -lGLU -lglut  -lglui ../PixelLab/lib/libpixelLab_linux.a ../PixelLab/lib/libpng12_linux64.a -lz
+	./curvas_de_nivel
+

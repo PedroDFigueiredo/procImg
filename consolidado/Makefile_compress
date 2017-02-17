@@ -1,0 +1,5 @@
+all: 
+	g++ -std=c++11 -Wall -Wextra -w -fexceptions -g -I  ../PixelLab/include -I ../PixelLab/src/PixelLab -I ../PixelLab/bin -c compressao.cpp -o compressao.o
+	g++ -std=c++11 -w -o compressao compressao.o   -lGL -lGLU -lglut  -lglui ../PixelLab/lib/libpixelLab_linux.a ../PixelLab/lib/libpng12_linux64.a -lz
+	./compressao
+
